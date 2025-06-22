@@ -4,24 +4,21 @@ import java.util.Map;
 public class CountCharacterOccurence {
     public static void main(String[] args) {
         String input = "hello world";
-        int[] count = new int[256];  // ASCII size array to store character counts
+        Map<Character, Integer> countMap = new HashMap<>();
 
-        // Iterate over the string and count the occurrences of each character
-        for (int i = 0; i < input.length(); i++) {
-            count[input.charAt(i)]++;
+        for (char c : input.toCharArray()) {
+            countMap.put(c, countMap.getOrDefault(c, 0) + 1);
         }
 
-        // Print the occurrences of each character
-        for (int i = 0; i < 256; i++) {
-            if (count[i] > 0) {
-                System.out.println((char) i + ": " + count[i]);
-            }
-        }
+        // Print the entire map
+        System.out.println(countMap);
+
         /// ///////////////////////////////////////////////////
         //Count occcurence of word
         String text = "hello world hello java world java hello";
 
         // Split the text into words
+        // Result of split: ["hello", "world", "hello", "java", "world", "java", "hello"]
         String[] words = text.split(" ");
 
         // Create a HashMap to store word counts
@@ -30,19 +27,10 @@ public class CountCharacterOccurence {
         // Count occurrences using a for loop
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
-
-            // If the word is already in the map, increment its count
-            if (wordCount.containsKey(word)) {
-                wordCount.put(word, wordCount.get(word) + 1);
-            } else {
-                // Otherwise, add the word with count 1
-                wordCount.put(word, 1);
-            }
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
         }
 
-        // Print the result
-        for (String word : wordCount.keySet()) {
-            System.out.println(word + ": " + wordCount.get(word));
-        }
+        // Print the full map
+        System.out.println(wordCount);
     }
 }

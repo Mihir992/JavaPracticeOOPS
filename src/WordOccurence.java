@@ -14,7 +14,6 @@ public class WordOccurence {
                 count++;
             }
         }
-
         System.out.println("The word \"" + wordToFind + "\" occurs " + count + " times.");
     }
 }
